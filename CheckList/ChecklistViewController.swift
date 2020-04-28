@@ -46,7 +46,7 @@ class ChecklistViewController: UITableViewController {
         
         super.init(coder: aDecoder)
     }
-    
+    // комментарий=)
     @IBAction func addItem() {
         let newRowIndex = items.count
        
