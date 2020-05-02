@@ -113,7 +113,7 @@
                                 <action selector="cancel" destination="KaW-sS-tZW" id="OeA-vD-e6l"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="NHJ-Iw-k6f">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="NHJ-Iw-k6f">
                             <connections>
                                 <action selector="done" destination="KaW-sS-tZW" id="8bI-ql-KgI"/>
                             </connections>
