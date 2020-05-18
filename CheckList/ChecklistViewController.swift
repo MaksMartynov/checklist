@@ -13,40 +13,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     
     required init?(coder aDecoder: NSCoder) {
         items = [ChecklistItem]()
-        
-        let row0item = ChecklistItem()
-        row0item.text = "Walk with dog"
-        row0item.checked = false
-        items.append(row0item)
-        
-        let row1item = ChecklistItem()
-        row1item.text = "Brush teeth"
-        row1item.checked = true
-        items.append(row1item)
-        
-        let row2item = ChecklistItem()
-        row2item.text = "learn iOS development"
-        row2item.checked = true
-        items.append(row2item)
-        
-        let row3item = ChecklistItem()
-        row3item.text = "Soccer practice"
-        row3item.checked = false
-        items.append(row3item)
-        
-        let row4item = ChecklistItem()
-        row4item.text = "Eat ice cream"
-        row4item.checked = true
-        items.append(row4item)
-        
-        let row5item = ChecklistItem()
-        row5item.text = "WorkOut"
-        row5item.checked = false
-        items.append(row5item)
-        
         super.init(coder: aDecoder)
-        print("Documents folder is \(documentsDirectory())")
-        print("Data file path is \(dataFilePath())")
+        loadChecklistItems()
     }
     
     override func viewDidLoad() {
@@ -71,6 +39,23 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         return cell
     }
     
+       func configureCheckmark(for cell: UITableViewCell,
+                               with item: ChecklistItem) {
+           let label = cell.viewWithTag(1001) as! UILabel
+           
+           if item.checked {
+               label.text = "√"
+           } else {
+               label.text = ""
+           }
+       }
+       
+       func configureText(for cell: UITableViewCell,
+                          with item: ChecklistItem) {
+           let label = cell.viewWithTag(1000) as! UILabel
+           label.text = item.text
+       }
+    
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         
@@ -94,23 +79,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         
         saveChecklistItems()
     }
-    
-    func configureCheckmark(for cell: UITableViewCell,
-                            with item: ChecklistItem) {
-        let label = cell.viewWithTag(1001) as! UILabel
-        
-        if item.checked {
-            label.text = "√"
-        } else {
-            label.text = ""
-        }
-    }
-    
-    func configureText(for cell: UITableViewCell,
-                       with item: ChecklistItem) {
-        let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.text
-    }
+   
     //Setting the delegate
       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
           if segue.identifier == "AddItem" {
@@ -168,15 +137,23 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         return documentsDirectory().appendingPathComponent("Checklists.plist")
     }
     
+    func loadChecklistItems() {
+      let path = dataFilePath()
+      if let data = try? Data(contentsOf: path) {
+        let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+        items = unarchiver.decodeObject(forKey: "ChecklistItems") as! [ChecklistItem]
+        unarchiver.finishDecoding()
+      }
+    }
+    
     func saveChecklistItems() {
-        let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWith: data)
-        archiver.encode(items, forKey: "ChecklistItems")
-        archiver.finishEncoding()
-        data.write(to: dataFilePath(), atomically: true)
+      let data = NSMutableData()
+      let archiver = NSKeyedArchiver(forWritingWith: data)
+      archiver.encode(items, forKey: "ChecklistItems")
+      archiver.finishEncoding()
+      data.write(to: dataFilePath(), atomically: true)
     }
 }
-
 
 
 
