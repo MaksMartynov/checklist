@@ -8,8 +8,16 @@
 
 import Foundation
 
-class ChecklistItem: NSObject
-{
+class ChecklistItem: NSObject, NSCoding {
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(text, forKey: "Text")
+        aCoder.encode(checked, forKey: "Checked")
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init()
+    }
+    
     var text = ""
     var checked = false
     
