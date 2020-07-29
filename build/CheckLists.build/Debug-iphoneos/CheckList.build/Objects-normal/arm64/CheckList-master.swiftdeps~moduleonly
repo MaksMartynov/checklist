@@ -1,0 +1,12 @@
+version: "Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+options: "056fcaf7b9bfd3fa9e0ab03996fba557"
+build_time: [1591782506, 259378000]
+inputs:
+  "/Users/ale/checklist/CheckLists/ItemDetailViewController.swift": [1589187492, 322966639]
+  "/Users/ale/checklist/CheckLists/ListDetailViewControllerTableViewController.swift": [1591782320, 858042128]
+  "/Users/ale/checklist/CheckLists/AllListsViewController.swift": [1591782320, 876907037]
+  "/Users/ale/checklist/CheckLists/ChecklistViewController.swift": [1591407542, 890804030]
+  "/Users/ale/checklist/CheckLists/AppDelegate.swift": [1587539078, 42040944]
+  "/Users/ale/checklist/CheckLists/SceneDelegate.swift": [1587539078, 72595119]
+  "/Users/ale/checklist/CheckLists/ChecklistItem.swift": [1590500233, 198562601]
+  "/Users/ale/checklist/CheckLists/Checklist.swift": [1591065652, 379580046]
